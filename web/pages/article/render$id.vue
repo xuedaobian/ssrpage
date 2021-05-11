@@ -8,7 +8,7 @@
 import { defineComponent } from "vue";
 import { mapState } from "vuex";
 import mkDown from "@/components/mkDown";
-import 'github-markdown-css'
+import 'github-markdown-css/github-markdown.css'
 
 export default defineComponent({
   inject: ['asyncData'],
@@ -39,5 +39,7 @@ export default defineComponent({
 .md-container {
   width: 1180px;
   margin: 0 auto;
+  text-align: left;
 }
+
 </style>
