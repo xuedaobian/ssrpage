@@ -12,6 +12,7 @@
 import NavHeader from "@/components/navHeader";
 import BotFooter from "@/components/botFooter";
 import {VueShowdown} from 'vue-showdown'
+// import 'github-markdown-css'
 import { reactive, provide } from 'vue'
 export default {
   props: ['asyncData'],

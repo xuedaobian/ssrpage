@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <mk-down :htmlMD="htmlMD"></mk-down>
-    <!-- <h1>{{ card?'ok':'no' }}</h1> -->
+  <div class="md-container">
+    <mk-down :htmlMD="htmlMD" class="markdown-body"></mk-down>
   </div>
 </template>
 
@@ -9,6 +8,7 @@
 import { defineComponent } from "vue";
 import { mapState } from "vuex";
 import mkDown from "@/components/mkDown";
+import 'github-markdown-css'
 
 export default defineComponent({
   inject: ['asyncData'],
@@ -34,3 +34,10 @@ export default defineComponent({
   }
 });
 </script>
+
+<style>
+.md-container {
+  width: 1180px;
+  margin: 0 auto;
+}
+</style>
