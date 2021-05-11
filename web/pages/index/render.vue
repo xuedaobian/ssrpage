@@ -46,106 +46,41 @@ const categs = [
   { id: "application", name: "案例" },
   { id: "practice", name: "练习" },
 ];
-const postInf = [
-  {
-    title: "111",
-    time: "2021-05-02",
-    author: "zmhhh",
-    link: "#",
-    type: 'required'
-  },
-  {
-    title: "222",
-    time: "2021-05-02",
-    author: "zmhhh",
-    link: "#",
-    type: 'required'
-  },
-  {
-    title: "333",
-    time: "2021-05-02",
-    author: "zmhhh",
-    link: "#",
-    type: 'required'
-  },
-  {
-    title: "444",
-    time: "2021-05-02",
-    author: "zmhhh",
-    link: "#",
-    type: 'required'
-  },
-  {
-    title: "555",
-    time: "2021-05-02",
-    author: "zmhhh",
-    link: "#",
-    type: 'required'
-  },
-  {
-    title: "777",
-    time: "2021-05-02",
-    author: "zmhhh",
-    link: "w",
-    type: 'features'
-  },
-  {
-    title: "888",
-    time: "2021-05-02",
-    author: "zmhhh",
-    link: "w",
-    type: 'tools'
-  },
-  {
-    title: "999",
-    time: "2021-05-02",
-    author: "zmhhh",
-    link: "w",
-    type: 'application'
-  },
-  {
-    title: "101010",
-    time: "2021-05-02",
-    author: "zmhhh",
-    link: "w",
-    type: 'practice'
-  },
-];
 
 export default defineComponent({
   name: "Home",
   setup() {
-    // const bcard = ref(blockCard);
-    // const fcard = ref(fisco);
     let choosed = ref('all');
     const cates = ref(categs);
     const isActive = ref("isactive");
-    const postInfos = ref(postInf.slice(0,4));
+    let postInfos = ref([]);
     let curPage = ref(1);
-    let pageTotal = ref(postInf.length);
+    let pageTotal = ref(postInfos.length);
 
     return {
-      // bcard,
-      // fcard,
+      postInfos,
       choosed,
       cates,
       isActive,
-      postInfos,
       curPage,
       pageTotal
     };
   },
   computed: {
     ...mapState({
-      cardList: (state) => state.cardStore.data,
+      cardList: (state) => state.indexStore.data.cards.data,
+      postList: (state) => state.indexStore.data.posts.data,
     }),
   },
   mounted(){
-    console.log('this.cardList',this.cardList)
+    // console.log('this.cardList',this.cardList)
+    nextTick(() => {
+      this.postInfos = this.postList;
+      })
   },
   watch:{
     curPage(nd,od){
-      this.postInfos = postInf.slice((nd-1)*4,nd*4);
+      this.postInfos = this.postInfos.slice((nd-1)*4,nd*4);
     }
   },
   components: {
@@ -157,10 +92,16 @@ export default defineComponent({
     changeCate(id) {
       this.choosed = id;
       this.curPage = 1;
-
+      if(id === 'all') {
+        nextTick(() => {
+          this.postInfos = this.postList
+          this.pageTotal = this.postInfos.length
+        })
+      }
       // 更新postInfos
-      nextTick(() => {
-      this.postInfos = this.getPostInfo(id).slice(0,4);
+      else nextTick(() => {
+        this.postInfos = this.postList.filter(val => val.type === id);
+        this.pageTotal = this.postInfos.length
       })
       // console.log(this.pageTotal)
       // 更新子组件
@@ -168,18 +109,6 @@ export default defineComponent({
     pageChange(idx){
       this.curPage += idx;
     },
-    getPostInfo(type='all') {
-      // 发起xhr请求,更新 postInf
-      // postInf = 
-      if(type === 'all') {
-        this.pageTotal = postInf.length
-        return postInf;
-      }
-      const temp = postInf.filter(val => val.type === type);
-      this.pageTotal = temp.length;
-      return temp;
-      // 得到 postInf and this.postInfos两个数组
-    }
   },
 });
 </script>

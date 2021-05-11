@@ -1,7 +1,7 @@
 <template>
   <div>
     <mk-down :htmlMD="htmlMD"></mk-down>
-    <h1>{{ card?.cardTitle?'ok':'no' }}</h1>
+    <h1>{{ card?'ok':'no' }}</h1>
   </div>
 </template>
 
@@ -21,11 +21,11 @@ export default {
   },
   computed: {
     ...mapState({
-      card: (state) => state.cardStore.data,
+      card: (state) => state.indexStore.data.cards,
     }),
   },
   mounted() {
-    console.log(this.card)
+    // console.log(this.card)
   }
 };
 </script>

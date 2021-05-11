@@ -12,8 +12,12 @@
 import NavHeader from "@/components/navHeader";
 import BotFooter from "@/components/botFooter";
 import {VueShowdown} from 'vue-showdown'
-
+import { reactive, provide } from 'vue'
 export default {
+  props: ['asyncData'],
+  setup(props) {
+    console.log(props.asyncData)
+  },
   components: {
     NavHeader,
     BotFooter,

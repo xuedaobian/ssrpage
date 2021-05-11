@@ -1,10 +1,8 @@
 import { ISSRContext } from 'ssr-types'
-
+import axios from 'axios'
 export default async ({ store, router }, ctx?: ISSRContext) => {
 
-  const data = await ctx?.apiCardsService?.getCardList(1);
-  console.log('fetch:', data)
-  console.log('router',router)
-  await store.dispatch('cardStore/initialData', { payload: data });
-  // await store.dispatch('indexStore/initialData', { payload: data })
+  const data = __isBrowser__ ? await (await window.fetch('/api/index')).json() : await ctx?.apiService?.index();
+
+  await store.dispatch('indexStore/initialData', { payload: data })
 }

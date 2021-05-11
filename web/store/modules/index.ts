@@ -5,7 +5,7 @@ const indexStore = {
   },
   mutations: {
     setData (state, payload) {
-      state.data = payload.data
+      state.data = payload
     }
   },
   actions: {

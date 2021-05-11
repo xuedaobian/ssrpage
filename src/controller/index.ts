@@ -2,13 +2,12 @@ import { Readable } from 'stream'
 import { Controller, Get, Provide, Inject } from '@midwayjs/decorator'
 import { Context } from 'egg'
 import { render } from 'ssr-core-vue3'
-import { IApiService, IApiDetailService, apiCardService } from '../interface'
+import { IApiService, IApiDetailService, ApiArticleService } from '../interface'
 
 interface IEggContext extends Context {
   apiService: IApiService
   apiDeatilservice: IApiDetailService
-  apiCardsService: apiCardService
-  // apiCardsService: IApiCardsService
+  apiArticleService: ApiArticleService
 }
 
 @Provide()
@@ -23,24 +22,21 @@ export class Index {
   @Inject('ApiDetailService')
   apiDeatilservice: IApiDetailService
 
-  @Inject('ApiCardsService')
-  apiCardsService: apiCardService
+  @Inject('ApiArticleService')
+  apiArticleService: ApiArticleService
 
-  // @Inject('ApiCardsService')
-  // apiCardsService: IApiCardsService
 
   @Get('/')
   async handler (): Promise<void> {
     try {
       this.ctx.apiService = this.apiService
       this.ctx.apiDeatilservice = this.apiDeatilservice
-      this.ctx.apiCardsService = this.apiCardsService
 
       const stream = await render<Readable>(this.ctx, {
         stream: true
       })
       this.ctx.body = stream
-      console.log('/index')
+      // console.log('/index')
     } catch (error) {
       console.log(error)
       this.ctx.body = error
@@ -51,7 +47,7 @@ export class Index {
     try {
       // this.ctx.apiService = this.apiService
       // this.ctx.apiDeatilservice = this.apiDeatilservice
-      this.ctx.apiCardsService = this.apiCardsService
+      this.ctx.apiArticleService = this.apiArticleService
 
       const stream = await render<Readable>(this.ctx, {
         stream: true

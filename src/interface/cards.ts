@@ -10,6 +10,6 @@
 //     link: string
 //   },
 // }
-export interface apiCardService {
+export interface ApiArticleService {
   index: (id: string) => Promise<any>
 }
