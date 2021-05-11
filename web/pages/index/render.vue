@@ -39,18 +39,18 @@ import PostItem from "@/components/postItem";
 import Pagination from '@/components/pagination';
 
 const categs = [
-  { id: "all", name: "全部" },
-  { id: "required", name: "学习必备" },
-  { id: "features", name: "FISCO 解析" },
-  { id: "tools", name: "各类工具" },
-  { id: "application", name: "案例" },
-  { id: "practice", name: "练习" },
+  { id: "features", name: "features" },
+  { id: "required", name: "required" },
+  { id: "tools", name: "tools" },
+  { id: "application", name: "application" },
+  { id: "practice", name: "practice" },
+  { id: "conception", name: "conception" }
 ];
 
 export default defineComponent({
   name: "Home",
   setup() {
-    let choosed = ref('all');
+    let choosed = ref('features');
     const cates = ref(categs);
     const isActive = ref("isactive");
     let postInfos = ref([]);
@@ -80,7 +80,7 @@ export default defineComponent({
   },
   watch:{
     curPage(nd,od){
-      this.postInfos = this.postInfos.slice((nd-1)*4,nd*4);
+      this.postInfos = this.postInfos.slice((nd-1)*5,nd*5);
     }
   },
   components: {
@@ -92,14 +92,8 @@ export default defineComponent({
     changeCate(id) {
       this.choosed = id;
       this.curPage = 1;
-      if(id === 'all') {
-        nextTick(() => {
-          this.postInfos = this.postList
-          this.pageTotal = this.postInfos.length
-        })
-      }
       // 更新postInfos
-      else nextTick(() => {
+      nextTick(() => {
         this.postInfos = this.postList.filter(val => val.type === id);
         this.pageTotal = this.postInfos.length
       })

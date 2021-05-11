@@ -8,12 +8,12 @@ export default {
           article1: {
             title: "7步弄懂区块链",
             link:
-              "/article/2",
+              "2",
           },
           article2: {
             title: "区块链是什么鬼",
             link:
-              "/article",
+              "2",
           },
         },
         {
@@ -21,11 +21,11 @@ export default {
           cardDesc: "什么是FISCO?它好在哪？",
           article1: {
             title: "FISCO 是什么",
-            link: "#",
+            link: "1",
           },
           article2: {
             title: '入门Fisso',
-            link: "#"
+            link: "1"
           }
         }
       ]
@@ -35,68 +35,51 @@ export default {
         [
           {
             title: "111",
-            time: "2021-05-02",
-            author: "zmhhh",
-            link: "#",
+            link: "application$application_manufacturing_changhong",
             type: 'required'
           },
           {
             title: "222",
-            time: "2021-05-02",
-            author: "zmhhh",
-            link: "#",
-            type: 'required'
+            link: "1",
+            type: 'features'
           },
           {
             title: "333",
-            time: "2021-05-02",
-            author: "zmhhh",
-            link: "#",
+            link: "1",
             type: 'required'
           },
           {
             title: "444",
-            time: "2021-05-02",
-            author: "zmhhh",
-            link: "#",
+            link: "1",
             type: 'required'
           },
           {
             title: "555",
-            time: "2021-05-02",
-            author: "zmhhh",
-            link: "#",
-            type: 'required'
+            link: "1",
+            type: 'conception'
           },
           {
             title: "777",
-            time: "2021-05-02",
-            author: "zmhhh",
             link: "w",
             type: 'features'
           },
           {
             title: "888",
-            time: "2021-05-02",
-            author: "zmhhh",
             link: "w",
             type: 'tools'
           },
           {
             title: "999",
-            time: "2021-05-02",
-            author: "zmhhh",
             link: "w",
             type: 'application'
           },
           {
             title: "101010",
-            time: "2021-05-02",
-            author: "zmhhh",
             link: "w",
             type: 'practice'
           },
         ]
-    }
+    },
+
  }
 }

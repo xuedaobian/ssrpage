@@ -1,13 +1,8 @@
 <template>
   <div class="article-item">
     <img src="/images/article1.png" alt="" class="post-cover" />
-    <div class="article-info">
-      <a :href="link" class="title">{{ title }}</a>
-      <div class="meta">
-        <span>{{ author }}</span>
-        &nbsp;&nbsp;
-        <time>{{ time }}</time>
-      </div>
+    <div class="article-info" @click="gotoPage(link)">
+      <span  class="title">{{ title }}</span>
     </div>
   </div>
 </template>
@@ -22,19 +17,18 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    author: {
-      type: String,
-      required: true,
-    },
-    time: {
-      type: String,
-      required: true,
-    },
     link: {
       type: String,
     },
   },
   setup() {},
+  methods: {
+    gotoPage(link) {
+      this.$router.push({
+        path: `/article/${link}`
+      })
+    }
+  }
 });
 </script>
 
@@ -64,6 +58,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   margin-left: 1.3em;
+  cursor: pointer;
 }
 .article-info .title {
   display: block;
@@ -77,11 +72,5 @@ export default defineComponent({
   padding-top: 4px;
   line-height: 28px;
 }
-.article-info .meta {
-  color: #8f9aaa;
-  font-size: 13px;
-  display: flex;
-  align-items: flex-end;
-  height: 100%;
-}
+
 </style>
