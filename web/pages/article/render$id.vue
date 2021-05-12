@@ -6,10 +6,9 @@
 
 <script>
 import { defineComponent } from "vue";
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
 import mkDown from "@/components/mkDown";
 import 'github-markdown-css/github-markdown.css'
-
 export default defineComponent({
   inject: ['asyncData'],
 
@@ -22,9 +21,9 @@ export default defineComponent({
     mkDown,
   },
   computed: {
-    ...mapState({
-      card: (state) => state.indexStore.data.cards,
-    }),
+    // ...mapState({
+    //   card: (state) => state.indexStore.data.cards,
+    // }),
   },
   created() {
     this.htmlMD = this.asyncData.value.docsContent.data

@@ -99,4 +99,9 @@ export default defineComponent({
   margin: 0 auto;
   text-align: left;
 }
+.article-body p,
+.article-body h1,
+.article-body h2 {
+  margin: 15px 0;
+}
 </style>
