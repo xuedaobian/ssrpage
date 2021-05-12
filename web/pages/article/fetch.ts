@@ -11,9 +11,6 @@ export default async ({ store, router }, ctx?: ISSRContext) => {
   } else {
     // console.log(ctx)
     path = ctx?.request.url.replace(/\$/g, '/').replace('/article/', '')
-    // eslint-disable-next-line
-    // data = require(`@/mkdown/${path}.md`).default
-    // console.log(path)
 
     const tempHost = ctx?.request.header.host
     const ho = tempHost.substring(0, tempHost.indexOf(':'))
@@ -24,7 +21,7 @@ export default async ({ store, router }, ctx?: ISSRContext) => {
     // console.log(data.data)
   }
   return {
-    docsContent: data,
+    docsContent: data.data
     // pagePath: path,
   }
 }

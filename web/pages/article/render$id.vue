@@ -26,7 +26,7 @@ export default defineComponent({
     // }),
   },
   created() {
-    this.htmlMD = this.asyncData.value.docsContent.data
+    this.htmlMD = this.asyncData.value.docsContent
   },
   mounted() {
     // console.log(this.card)
