@@ -1,12 +1,13 @@
 <template>
   <div class="md-container">
     <mk-down :htmlMD="htmlMD" class="markdown-body"></mk-down>
+
+    <!-- <v-md-preview :text="htmlMD"></v-md-preview> -->
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-// import { mapState } from "vuex";
 import mkDown from "@/components/mkDown";
 import 'github-markdown-css/github-markdown.css'
 export default defineComponent({
@@ -21,15 +22,11 @@ export default defineComponent({
     mkDown,
   },
   computed: {
-    // ...mapState({
-    //   card: (state) => state.indexStore.data.cards,
-    // }),
   },
   created() {
     this.htmlMD = this.asyncData.value.docsContent
   },
   mounted() {
-    // console.log(this.card)
   }
 });
 </script>

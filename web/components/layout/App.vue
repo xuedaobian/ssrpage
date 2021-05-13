@@ -12,6 +12,18 @@
 import NavHeader from "@/components/navHeader";
 import BotFooter from "@/components/botFooter";
 import {VueShowdown} from 'vue-showdown'
+
+import VueMarkdownEditor from '@kangc/v-md-editor';
+import '@kangc/v-md-editor/lib/style/base-editor.css';
+import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
+import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
+VueMarkdownEditor.use(vuepressTheme);
+
+// import VMdPreview from '@kangc/v-md-editor/lib/preview';
+// import '@kangc/v-md-editor/lib/style/preview.css';
+// import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
+// VMdPreview.use(githubTheme);
+
 // import 'github-markdown-css'
 import { reactive, provide } from 'vue'
 export default {
@@ -31,6 +43,8 @@ export default {
   created(){
     const app = window.__VUE_APP__;
     app.component('VueShowdown', VueShowdown);
+    app.use(VueMarkdownEditor);
+    // app.use(VMdPreview);
 }
 };
 </script>

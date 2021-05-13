@@ -8,7 +8,7 @@
     <a class="rank-card" :style="{ background: colors[Math.floor(Math.random()*10%6)] }" @click="gotoArticle(article1.link)">
       <p class="card-link">{{article1.title}}</p>
     </a>
-    <a v-if="article2" class="rank-card" :style="{ background: colors[Math.floor(Math.random()*10%6)] }" :href="article2.link">
+    <a v-if="article2" class="rank-card" :style="{ background: colors[Math.floor(Math.random()*10%6)] }" @click="gotoArticle(article1.link)">
       <p class="card-link">{{article2.title}}</p>
     </a>
   </div>

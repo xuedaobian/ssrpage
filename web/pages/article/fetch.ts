@@ -9,7 +9,6 @@ export default async ({ store, router }, ctx?: ISSRContext) => {
     path = router.path.replace(/\$/g, '/').replace('/article/', '')
     data = await axios.get(`/mkdown/${path}.md`)
   } else {
-    // console.log(ctx)
     path = ctx?.request.url.replace(/\$/g, '/').replace('/article/', '')
 
     const tempHost = ctx?.request.header.host
@@ -18,7 +17,6 @@ export default async ({ store, router }, ctx?: ISSRContext) => {
     data = await axios.get(`/mkdown/${path}.md`, {
       proxy: { host: ho, port: po }
     })
-    // console.log(data.data)
   }
   return {
     docsContent: data.data
