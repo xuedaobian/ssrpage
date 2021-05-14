@@ -44,7 +44,8 @@ const categs = [
   { id: "tools", name: "tools" },
   { id: "application", name: "application" },
   { id: "practice", name: "practice" },
-  { id: "conception", name: "conception" }
+  { id: "conception", name: "conception" },
+  { id: "other", name: "other"}
 ];
 
 export default defineComponent({
