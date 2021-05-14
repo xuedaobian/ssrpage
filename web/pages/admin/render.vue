@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <Succeed v-if="succeed"></Succeed>
+
+  <div v-else>
     <div class="choose-doc">
       <div class="title-con">
         文章标题：
@@ -85,7 +87,7 @@
 <script>
 import { ref, defineComponent } from "vue";
 import cloudbase from "@cloudbase/js-sdk";
-
+import Succeed from '@/components/succeed'
 export default {
   data() {
     return {
@@ -95,10 +97,14 @@ export default {
       title: "",
       type: "",
       link: "",
+      succeed: false
     };
   },
   created() {
     // this.login();
+  },
+  components:{
+    Succeed
   },
   methods: {
     async login() {
@@ -115,24 +121,27 @@ export default {
       this.loginState = loginState.isAnonymousAuth;
       console.log(loginState.isAnonymousAuth); // true
     },
-
+    // 上传md文件到云存储
     async upMDFile(text) {
       const fileName = this.title;
       const blob = new Blob([text]);
       const file = new File([blob], `${fileName}.md`, { type: blob.type });
 
       if (!this.loginState) await this.login();
-      const cpath = `mkdown/${this.type}/${file.name}`
-      this.cloudApp.uploadFile({
-        cloudPath: cpath,
-        filePath: file,
-      }).then(res => {
-        console.log(res)
-      })
-      this.link = this.type + '$' + encodeURI(fileName);
-      console.log(this.link)
-      await this.addPost()
+      const cpath = `mkdown/${this.type}/${file.name}`;
+      this.cloudApp
+        .uploadFile({
+          cloudPath: cpath,
+          filePath: file,
+        })
+        .then((res) => {
+          console.log(res);
+        });
+      this.link = this.type + "$" + encodeURI(fileName);
+      console.log(this.link);
+      await this.addPost();
     },
+    // 上传文件记录到云数据库
     async addPost() {
       if (!this.loginState) await this.login();
       const res = await this.cloudApp.callFunction({
@@ -143,19 +152,23 @@ export default {
           link: this.link,
         },
       });
-      console.log('addpost',res);
-
+      console.log("addpost", res);
+      if(res.result._id) {
+        this.succeed = true
+      }
     },
+    // 点击保存触发
     saveFile(text, html) {
-      if(!this.type || !this.title) {
-        window.alert("文章标题与文章类型均为必需")
-        return
+      if (!this.type || !this.title) {
+        window.alert("文章标题与文章类型均为必需");
+        return;
       }
       console.log(text);
       console.log(html);
       this.upMDFile(text);
       // this.addPost();
     },
+    // 插入图片触发
     async uploadImage(e, insertImage, files) {
       if (!this.loginState) await this.login();
       // const fileUrl = await this.upCloudImage(files)
@@ -167,8 +180,6 @@ export default {
           filePath: files[0],
         })
         .then((res) => {
-          // console.log(res)
-          // return res.fileID
           this.cloudApp
             .getTempFileURL({ fileList: [res.fileID] })
             .then((res) => {
