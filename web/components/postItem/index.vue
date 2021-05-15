@@ -1,15 +1,13 @@
 <template>
   <div class="article-item">
-    <img src="/images/article1.png" alt="" class="post-cover" />
-    <div class="article-info" @click="gotoPage(link)">
-      <span  class="title">{{ title }}</span>
-    </div>
+    <ContainerTwoTone />
+    <span class="title" @click="gotoPage(link)">{{ title }}</span>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-
+import { ContainerTwoTone } from '@ant-design/icons-vue'
 export default defineComponent({
   name: "PostItem",
   props: {
@@ -20,6 +18,9 @@ export default defineComponent({
     link: {
       type: String,
     },
+  },
+  components:{
+    ContainerTwoTone
   },
   setup() {},
   methods: {
@@ -33,34 +34,19 @@ export default defineComponent({
 </script>
 
 <style>
-.article-list {
-  width: 778px;
-  padding: 0 30px 0 30px;
-  margin-bottom: 4em;
-  background-color: #fff;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
 .article-item {
   display: flex;
-  padding: 30px 0;
+  padding: 20px;
   border-top: 1px solid #e6e6e6;
+  align-items: center;
+  background-color: #fff;
+  margin: 6px 0;
+  width: 880px;
 }
-.post-cover {
-  width: 150px;
-  min-width: 150px;
-  height: 100px;
-  background: rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(143, 154, 170, 0.3);
-  border-radius: 8px;
-}
-.article-info {
-  display: flex;
-  flex-direction: column;
-  margin-left: 1.3em;
+
+.title {
   cursor: pointer;
-}
-.article-info .title {
+  margin-left: 40px;
   display: block;
   word-wrap: normal;
   text-overflow: ellipsis;
@@ -68,8 +54,6 @@ export default defineComponent({
   overflow: visible;
   font-size: 20px;
   color: #4d4f50;
-  font-weight: bold;
-  padding-top: 4px;
   line-height: 28px;
 }
 

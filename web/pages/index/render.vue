@@ -25,7 +25,6 @@
           :="postInfo"
         ></PostItem>
 
-      <Pagination :total="pageTotal" :curPage="curPage" @change="pageChange"></Pagination>
       </div>
     </section>
   </section>
@@ -36,7 +35,6 @@ import { defineComponent, ref, provide, nextTick } from "vue";
 import { mapState } from 'vuex'
 import Card from "@/components/card";
 import PostItem from "@/components/postItem";
-import Pagination from '@/components/pagination';
 
 const categs = [
   { id: "features", name: "features" },
@@ -55,16 +53,12 @@ export default defineComponent({
     const cates = ref(categs);
     const isActive = ref("isactive");
     let postInfos = ref([]);
-    let curPage = ref(1);
-    let pageTotal = ref(postInfos.length);
 
     return {
       postInfos,
       choosed,
       cates,
       isActive,
-      curPage,
-      pageTotal
     };
   },
   computed: {
@@ -74,35 +68,23 @@ export default defineComponent({
     }),
   },
   mounted(){
-    // console.log('this.cardList',this.cardList)
     nextTick(() => {
-      this.postInfos = this.postList;
+      this.postInfos = this.postList.filter(val => val.type === 'features');
       })
   },
   watch:{
-    curPage(nd,od){
-      this.postInfos = this.postInfos.slice((nd-1)*5,nd*5);
-    }
   },
   components: {
     Card,
     PostItem,
-    Pagination
   },
   methods: {
     changeCate(id) {
       this.choosed = id;
-      this.curPage = 1;
       // 更新postInfos
       nextTick(() => {
         this.postInfos = this.postList.filter(val => val.type === id);
-        this.pageTotal = this.postInfos.length
       })
-      // console.log(this.pageTotal)
-      // 更新子组件
-    },
-    pageChange(idx){
-      this.curPage += idx;
     },
   },
 });
