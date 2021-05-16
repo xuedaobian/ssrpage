@@ -63,16 +63,16 @@
         </h2>
         <p>
           <a name="QR"></a>
-          <img alt="公众号" src="/images/community1.png" />
+          <img alt="公众号" src="https://6e6f-note-16440d-1258774696.tcb.qcloud.la/assets/community-1.png" />
           <img
             alt="交流群"
-            src="/images/community2.png"
+            src="https://6e6f-note-16440d-1258774696.tcb.qcloud.la/assets/community-2.png"
           />
           <img
             alt="线下活动"
-            src="/images/community3.png"
+            src="https://6e6f-note-16440d-1258774696.tcb.qcloud.la/assets/community-3.png"
           />
-          <img alt="行动吧！" src="/images/community4.png" />
+          <img alt="行动吧！" src="https://6e6f-note-16440d-1258774696.tcb.qcloud.la/assets/community-4.png" />
         </p>
       </div>
     </div>

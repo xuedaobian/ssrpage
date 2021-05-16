@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="icon-bg">
-      <img src="/images/icon1.png" alt="icon-1" />
+      <img src="https://6e6f-note-16440d-1258774696.tcb.qcloud.la/assets/icon-1.png" alt="icon-1" />
     </div>
     <div class="card-title">{{cardTitle}}</div>
     <div class="card-desc">{{cardDesc}}</div>

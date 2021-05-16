@@ -19,7 +19,7 @@
         </nav>
       </main>
       <aside class="faside">
-        <img src="/images/commedia.png" alt="微信公众号" class="fimg" />
+        <img src="https://6e6f-note-16440d-1258774696.tcb.qcloud.la/assets/com-media.png" alt="微信公众号" class="fimg" />
         <p class="footer-slogn">微信扫一扫</p>
         <p class="footer-slogn">关注 FISCO 开源社区</p>
       </aside>

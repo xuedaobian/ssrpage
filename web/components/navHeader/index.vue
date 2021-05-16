@@ -1,7 +1,7 @@
 <template>
   <div id="navbar-wrapper">
     <div class="titles">
-      <img src="/images/logo.png" class="icon" alt="网站logo" />
+      <img src="https://6e6f-note-16440d-1258774696.tcb.qcloud.la/assets/logo.png" class="icon" alt="网站logo" />
       <span class="title-a"><router-link to="/">首页</router-link></span>
       <span class="title-a"
         ><a href="https://123eth.org/" target="_blank">网址导航</a></span
