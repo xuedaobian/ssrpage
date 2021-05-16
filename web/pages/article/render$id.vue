@@ -9,7 +9,6 @@
 <script>
 import { defineComponent } from "vue";
 import mkDown from "@/components/mkDown";
-import 'github-markdown-css/github-markdown.css'
 export default defineComponent({
   inject: ['asyncData'],
 

@@ -1,15 +1,10 @@
 <template>
 <div>
-  <VueShowdown
-  :markdown="htmlMD"
-  flavor="github"
-  :options="{ emoji: true }"
-/>
+<v-md-preview :text="htmlMD"></v-md-preview>
 </div>
 </template>
 
 <script lang="ts">
-import { defineComponent,ref } from "vue";
 
 export default({
   name: "mkDown",
