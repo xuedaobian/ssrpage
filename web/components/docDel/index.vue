@@ -33,7 +33,6 @@ export default defineComponent({
   mounted() {
     nextTick(() => {
       this.posts = this.postList;
-      console.log(this.posts);
     });
   },
   computed: {
@@ -68,7 +67,6 @@ export default defineComponent({
         if(res.result === 'ok') {
           return 'SUCCESS'
         } else {
-        console.log(res)
           return res
         }
     },
