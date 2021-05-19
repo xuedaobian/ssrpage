@@ -1,11 +1,11 @@
 <template>
   <a-result
     status="success"
-    title="Successfully Purchased Cloud Server ECS!"
-    sub-title="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
+    title="文章上传成功!"
+    sub-title="文章已存入对象存储，链接已存至云数据库"
   >
     <template #extra>
-      <a-button key="console" type="primary">Back Home</a-button>
+      <a-button key="console" type="primary" @click="gotoPage">Back Home</a-button>
     </template>
   </a-result>
 </template>
@@ -13,7 +13,14 @@
 <script>
 
 export default {
-  name: 'Succeed'
+  name: 'Succeed',
+  methods:{
+    gotoPage() {
+      this.$router.push({
+        path: `/`
+      })
+    }
+  }
 }
 </script>
 

@@ -5,6 +5,7 @@
     <head>
       <meta charSet="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="介绍区块链、Fisco Block相关科普知识，基于serverless架构的静态网站">
       <meta name="theme-color" content="#000000">
       <title>Fisco Block</title>
       <slot name="viteClient" />

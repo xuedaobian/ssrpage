@@ -5,7 +5,6 @@ export default async ({ store, router }, ctx?: ISSRContext) => {
   let data = {}
   let path
   if (__isBrowser__) {
-    console.log(router.path)
     path = router.path.replace(/\$/g, '/').replace('/article/', '')
     data = await axios.get(`https://6e6f-note-16440d-1258774696.tcb.qcloud.la/mkdown/${path}.md`)
   } else {
@@ -19,6 +18,5 @@ export default async ({ store, router }, ctx?: ISSRContext) => {
   }
   return {
     docsContent: data.data
-    // pagePath: path,
   }
 }

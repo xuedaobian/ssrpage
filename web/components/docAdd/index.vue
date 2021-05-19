@@ -16,29 +16,29 @@
       <div class="type-con">
         <span>文章类型:</span>
         <DocType @change="typeChange" />
-    </div>
+      </div>
 
-    <div clsss="de-class">
-      <v-md-editor
-        v-model="text"
-        height="500px"
-        :disabled-menus="[]"
-        @save="saveFile"
-        @upload-image="uploadImage"
-        class="mdeditor"
-      ></v-md-editor>
+      <div clsss="de-class">
+        <v-md-editor
+          v-model="text"
+          height="500px"
+          :disabled-menus="[]"
+          @save="saveFile"
+          @upload-image="uploadImage"
+          class="mdeditor"
+        ></v-md-editor>
+      </div>
     </div>
   </div>
-</div>
 </template>
 <script>
 import cloudbase from "@cloudbase/js-sdk";
-import Succeed from '@/components/succeed'
-import DocType from '@/components/typeRadio'
-import {Button,Result} from 'ant-design-vue'
+import Succeed from "@/components/succeed";
+import DocType from "@/components/typeRadio";
+import { Button, Result, message } from "ant-design-vue";
 
 export default {
-  name: 'DocAdd',
+  name: "DocAdd",
   data() {
     return {
       text: "",
@@ -47,22 +47,21 @@ export default {
       title: "",
       type: "",
       link: "",
-      fileID: '',
-      succeed: false
+      fileID: "",
+      succeed: false,
     };
   },
   created() {
     // this.login();
   },
-  components:{
+  components: {
     Succeed,
     Button,
     Result,
-    DocType
+    DocType,
   },
   methods: {
     async login() {
-      console.log("login");
       const app = cloudbase.init({
         env: "note-16440d",
       });
@@ -77,26 +76,28 @@ export default {
     },
     // 上传md文件到云存储
     async upMDFile(text) {
+      // 将string转为blob类型
       const fileName = this.title;
       const blob = new Blob([text]);
       const file = new File([blob], `${fileName}.md`, { type: blob.type });
-
+      // 鉴权
       if (!this.loginState) await this.login();
       const cpath = `mkdown/${this.type}/${file.name}`;
       this.cloudApp
         .uploadFile({
           cloudPath: cpath,
           filePath: file,
-        }).then(res => {
+        })
+        .then((res) => {
           this.fileID = res.fileID;
           this.link = this.type + "$" + encodeURI(fileName);
-        }).then(() => {
-          this.addPost();
         })
+        .then(() => {
+          this.addPost();
+        });
     },
     // 上传文件记录到云数据库
     async addPost() {
-      console.log(this.fileID)
       if (!this.loginState) await this.login();
       const res = await this.cloudApp.callFunction({
         name: "addMDFile",
@@ -107,9 +108,11 @@ export default {
           link: this.link,
         },
       });
-      console.log("addpost", res);
-      if(res.result._id) {
-        this.succeed = true
+      if (res.result._id) {
+        message.success({content: "文件上传成功", key:'upMsg'})
+        this.succeed = true;
+      } else {
+        message.error({content: "上传失败", key:'upMsg'})
       }
     },
     // 点击保存触发
@@ -118,10 +121,8 @@ export default {
         window.alert("文章标题与文章类型均为必需");
         return;
       }
-      console.log(text);
-      console.log(html);
+      message.loading({content: "上传中...", key:'upMsg'})
       this.upMDFile(text);
-      // this.addPost();
     },
     // 插入图片触发
     async uploadImage(e, insertImage, files) {
@@ -147,10 +148,10 @@ export default {
         });
     },
     // 文章类型改变触发
-    typeChange(e){
+    typeChange(e) {
       this.type = e.target.value;
-      console.log(e.target.value)
-    }
+      console.log(e.target.value);
+    },
   },
 };
 </script>

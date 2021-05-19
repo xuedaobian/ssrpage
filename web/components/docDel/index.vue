@@ -54,7 +54,7 @@ export default defineComponent({
       this.cloud = app;
       this.loginState = loginState.isAnonymousAuth;
     },
-    // 调用云函数 删除记录，然后删除文件
+    // 调用云函数,通过云函数避免安全规则
     async delDatabase(item) {
       if (!this.loginState) await this.login();
       const res = await this.cloud.callFunction({
@@ -76,7 +76,6 @@ export default defineComponent({
       if (del) {
         const key = 'del'
         message.loading({ content: 'Loading...', key})
-        // 后端删除信息
         that.delDatabase(item).then(res => {
           if(res === 'SUCCESS') {
             // 本地更新数组
@@ -89,7 +88,6 @@ export default defineComponent({
         }).catch(err => {
           message.error({content: err, key})
         })
-        
       }
     },
   },
