@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Provide } from '@midwayjs/decorator'
 import axios from 'axios'
 @Provide('ApiService')

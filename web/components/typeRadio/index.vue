@@ -1,15 +1,13 @@
 <template>
   <div>
-    <div>
-      <a-radio-group v-model:value="value1" button-style="solid">
-        <a-radio-button value="application">application</a-radio-button>
-        <a-radio-button value="conception">conception</a-radio-button>
-        <a-radio-button value="required">required</a-radio-button>
-        <a-radio-button value="features">features</a-radio-button>
-        <a-radio-button value="tools">tools</a-radio-button>
-        <a-radio-button value="other">other</a-radio-button>
-      </a-radio-group>
-    </div>
+      <van-radio-group v-model="value1"  direction="horizontal" @change="changeType">
+        <van-radio name="application">application</van-radio>
+        <van-radio name="conception">conception</van-radio>
+        <van-radio name="required">required</van-radio>
+        <van-radio name="features">features</van-radio>
+        <van-radio name="tools">tools</van-radio>
+        <van-radio name="other">other</van-radio>
+      </van-radio-group>
   </div>
 </template>
 <script lang="ts">
@@ -22,6 +20,12 @@ export default defineComponent({
       value1,
     };
   },
+  methods:{
+    changeType(name){
+      console.log(name)
+      this.$emit('typeChange',name)
+    }
+  }
 });
 </script>
 

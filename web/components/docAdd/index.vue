@@ -15,7 +15,7 @@
       </div>
       <div class="type-con">
         <span>文章类型:</span>
-        <DocType @change="typeChange" />
+        <DocType @typeChange="typeChange" />
       </div>
 
       <div clsss="de-class">
@@ -35,8 +35,7 @@
 import cloudbase from "@cloudbase/js-sdk";
 import Succeed from "@/components/succeed";
 import DocType from "@/components/typeRadio";
-import { Button, Result, message } from "ant-design-vue";
-
+import { Toast } from 'vant'
 export default {
   name: "DocAdd",
   data() {
@@ -56,8 +55,6 @@ export default {
   },
   components: {
     Succeed,
-    Button,
-    Result,
     DocType,
   },
   methods: {
@@ -109,10 +106,12 @@ export default {
         },
       });
       if (res.result._id) {
-        message.success({content: "文件上传成功", key:'upMsg'})
+        Toast.clear()
+        Toast.success( "文件上传成功")
         this.succeed = true;
       } else {
-        message.error({content: "上传失败", key:'upMsg'})
+        Toast.clear()
+        Toast.fail("上传失败")
       }
     },
     // 点击保存触发
@@ -121,7 +120,11 @@ export default {
         window.alert("文章标题与文章类型均为必需");
         return;
       }
-      message.loading({content: "上传中...", key:'upMsg'})
+      Toast.loading({
+        message:'上传中。。。',
+        forbidClick: true,
+        duration: 0
+      })
       this.upMDFile(text);
     },
     // 插入图片触发
@@ -149,8 +152,7 @@ export default {
     },
     // 文章类型改变触发
     typeChange(e) {
-      this.type = e.target.value;
-      console.log(e.target.value);
+      this.type = e;
     },
   },
 };

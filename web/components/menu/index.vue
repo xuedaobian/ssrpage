@@ -1,30 +1,26 @@
 <template>
-  <a-menu v-model:selectedKeys="current" mode="horizontal">
-    <a-menu-item key="add">
-      <mail-outlined />
-      新增文章
-    </a-menu-item>
-    <a-menu-item key="del">
-      删除文章
-    </a-menu-item>
-  </a-menu>
+<div>
+  <van-button type="primary" :disabled="pn==='add'" @click="changePage('add')">新编文章</van-button>
+  <van-button type="primary" :disabled="pn==='del'" @click="changePage('del')">删除文章</van-button>
+</div>
+
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
 export default defineComponent({
   name: "UserMenu",
   setup() {
-    const current = ref<string[]>(['add']);
+    let pn = ref('add')
     return {
-      current,
-    };
+      pn
+    }
   },
-  components: {
-    MailOutlined,
-    AppstoreOutlined,
-    SettingOutlined,
-  },
+  methods:{
+    changePage(value) {
+      this.$emit('menuChange',value)
+      this.pn = value==='add'?'add':'del'
+    }
+  }
 });
 </script>
 

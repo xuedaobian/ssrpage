@@ -1,13 +1,9 @@
 <template>
-  <a-result
-    status="success"
-    title="文章上传成功!"
-    sub-title="文章已存入对象存储，链接已存至云数据库"
-  >
-    <template #extra>
-      <a-button key="console" type="primary" @click="gotoPage">Back Home</a-button>
-    </template>
-  </a-result>
+<div class="succeedd">
+  <van-button type="success" @click="gotoPage">返回主页</van-button>
+
+</div>
+
 </template>
 
 <script>
@@ -24,3 +20,8 @@ export default {
 }
 </script>
 
+<style>
+.succeedd {
+  margin-top: 50px;
+}
+</style>

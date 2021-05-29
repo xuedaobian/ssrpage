@@ -20,12 +20,10 @@ VueMarkdownEditor.use(vuepressTheme);
 
 import VMdPreview from '@kangc/v-md-editor/lib/preview';
 import '@kangc/v-md-editor/lib/style/preview.css';
-import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
-VMdPreview.use(githubTheme);
+VMdPreview.use(vuepressTheme);
 
-import Antd from 'ant-design-vue';
-import 'ant-design-vue/dist/antd.css';
-
+// 组件引入
+import { Button,Form, Field, RadioGroup, Radio,Toast  } from 'vant';
 
 import { reactive, provide } from 'vue'
 export default {
@@ -45,8 +43,13 @@ export default {
   created(){
     const app = window.__VUE_APP__;
     app.use(VueMarkdownEditor);
-    app.use(Antd)
     app.use(VMdPreview);
+    app.use(Button);
+    app.use(Form);
+    app.use(Field);
+    app.use(Radio);
+    app.use(RadioGroup);
+    app.use(Toast);
 }
 };
 </script>

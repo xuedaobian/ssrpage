@@ -7,7 +7,6 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { ContainerTwoTone } from '@ant-design/icons-vue'
 export default defineComponent({
   name: "PostItem",
   props: {
@@ -19,9 +18,7 @@ export default defineComponent({
       type: String,
     },
   },
-  components:{
-    ContainerTwoTone
-  },
+  components:{},
   setup() {},
   methods: {
     gotoPage(link) {

@@ -7,11 +7,12 @@
     "@kangc/v-md-editor": "^2.2.4",
     "@midwayjs/decorator": "^2.3.0",
     "@midwayjs/web": "^2.3.0",
-    "ant-design-vue": "^2.1.6",
     "axios": "^0.21.1",
     "egg": "^2.0.0",
+    "egg-scripts": "^2.13.0",
     "ssr-core-vue3": "^5.0.0",
     "ssr-types": "^5.0.0",
+    "vant": "^3.0.17",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0",
     "vuex": "^4.0.0"
@@ -35,7 +36,7 @@
     "build": "ssr build",
     "deploy": "ssr build && ssr deploy",
     "deploy:tencent": "ssr build && ssr deploy --tencent",
-    "test":"jest",
+    "test": "jest",
     "lint": "eslint . --ext .js,.tsx,.ts,.vue --cache",
     "lint:fix": "eslint . --ext .js,.tsx,.ts,.vue --cache --fix"
   },

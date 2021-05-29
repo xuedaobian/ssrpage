@@ -2,7 +2,7 @@
   <div>
     <AdminEntry v-if="isAdmin==='no'" @login="login" />
     <div v-else>
-      <UserMenu @select="menuChange" />
+      <UserMenu @menuChange="menuChange" />
       <DocAdd v-show="menu === 'add'" />
       <DocDel v-show="menu === 'del'" />
     </div>
@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import AdminEntry from "@/components/entry";
 import UserMenu from "@/components/menu";
 import DocAdd from "@/components/docAdd";
@@ -29,10 +28,11 @@ export default {
     DocDel,
   },
   methods: {
-    menuChange({ key }) {
+    menuChange(key) {
       this.menu = key;
     },
     login(res) {
+      console.log(res)
       if(res==='ok') {
         this.isAdmin = 'yes';
       }

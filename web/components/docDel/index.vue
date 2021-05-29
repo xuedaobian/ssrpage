@@ -2,17 +2,16 @@
   <div class="doc-con">
     <div class="posts" v-for="post of posts" :key="post._id">
       <PostItem :title="post.title" :link="post.link" />
-      <a-button type="danger" @click="delDoc(post)">删除文章</a-button>
+      <van-button type="warning" @click="delDoc(post)">警告按钮</van-button>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref, nextTick } from "vue";
 import cloudbase from "@cloudbase/js-sdk";
-
+import { Toast } from 'vant'
 import PostItem from "@/components/postItem";
 import { mapState } from "vuex";
-import { Button, message } from "ant-design-vue";
 
 export default defineComponent({
   name: "DocDel",
@@ -28,7 +27,6 @@ export default defineComponent({
   },
   components: {
     PostItem,
-    Button,
   },
   mounted() {
     nextTick(() => {
@@ -74,19 +72,24 @@ export default defineComponent({
       const del = window.confirm("操作不可逆，是否确认？");
       const that = this;
       if (del) {
-        const key = 'del'
-        message.loading({ content: 'Loading...', key})
+        Toast.loading({
+          message:'Loading...',
+          duration: 0
+        })
         that.delDatabase(item).then(res => {
           if(res === 'SUCCESS') {
             // 本地更新数组
           that.posts = that.posts.filter((cur) => cur._id !== item._id);
           nextTick(() => {});
-          message.success({ content: '删除成功！', key});
+          Toast.clear()
+          Toast.success('删除成功！');
         } else {
-          message.error({content: res, key})
+          Toast.clear()
+          Toast.fail(res)
         }
         }).catch(err => {
-          message.error({content: err, key})
+          Toast.clear()
+          Toast.fail(err)
         })
       }
     },
@@ -98,7 +101,7 @@ export default defineComponent({
   width: 100%;
 }
 .posts {
-  margin: 20px auto;
+  margin: 5px auto;
   display: flex;
   width: 880px;
   align-items: center;
